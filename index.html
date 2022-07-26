@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Rubik's Cube Solver</title>
+  <link id = "theme1" rel="stylesheet" href="theme1.css">
+</head>
+
+</body>
+  <script  src="script.js"></script>
+
+
+  <div style = "width:33.1vw;height:24.6vw;float:left"></div>
+  <div style = "width: 32.8vw;height:24.6vw;float:left">
+    <div style = "width:8vw;height:8vw;float:left;float:left;margin:0.1vw"></div>
+    <div style = "width:8vw;height:8vw;float:left;float:left;margin:0.1vw">
+      <div id = "A" style = "width:3.8vw;height:3.8vw;float:left;border:0.1vw solid;float:left;background-color:#ffffff"></div>
+      <div id = "B" style = "width:3.8vw;height:3.8vw;float:left;border:0.1vw solid;float:left;background-color:#ffffff"></div>
+      <div id = "D" style = "width:3.8vw;height:3.8vw;float:left;border:0.1vw solid;float:left;background-color:#ffffff"></div>
+      <div id = "C" style = "width:3.8vw;height:3.8vw;float:left;border:0.1vw solid;float:left;background-color:#ffffff"></div>
+    </div>
+    <div style = "width:8vw;height:8vw;float:left;float:left;margin:0.1vw"></div>
+    <div style = "width:8vw;height:8vw;float:left;float:left;margin:0.1vw"></div>
+
+    <div style = "width:8vw;height:8vw;float:left;margin:0.1vw">
+      <div id = "E" style = "width:3.8vw;height:3.8vw;float:left;border:0.1vw solid;float:left;background-color:#fc8d05"></div>
+      <div id = "F" style = "width:3.8vw;height:3.8vw;float:left;border:0.1vw solid;float:left;background-color:#fc8d05"></div>
+      <div id = "H" style = "width:3.8vw;height:3.8vw;float:left;border:0.1vw solid;float:left;background-color:#fc8d05"></div>
+      <div id = "G" style = "width:3.8vw;height:3.8vw;float:left;border:0.1vw solid;float:left;background-color:#fc8d05"></div>
+    </div>
+    <div style = "width:8vw;height:8vw;float:left;margin:0.1vw">
+      <div id = "I" style = "width:3.8vw;height:3.8vw;float:left;border:0.1vw solid;float:left;background-color:#00ff00"></div>
+      <div id = "J" style = "width:3.8vw;height:3.8vw;float:left;border:0.1vw solid;float:left;background-color:#00ff00"></div>
+      <div id = "L" style = "width:3.8vw;height:3.8vw;float:left;border:0.1vw solid;float:left;background-color:#00ff00"></div>
+      <div id = "K" style = "width:3.8vw;height:3.8vw;float:left;border:0.1vw solid;float:left;background-color:#00ff00"></div>
+    </div>
+    <div style = "width:8vw;height:8vw;float:left;margin:0.1vw">
+      <div id = "M" style = "width:3.8vw;height:3.8vw;float:left;border:0.1vw solid;float:left;background-color:#ff0000"></div>
+      <div id = "N" style = "width:3.8vw;height:3.8vw;float:left;border:0.1vw solid;float:left;background-color:#ff0000"></div>
+      <div id = "P" style = "width:3.8vw;height:3.8vw;float:left;border:0.1vw solid;float:left;background-color:#ff0000"></div>
+      <div id = "O" style = "width:3.8vw;height:3.8vw;float:left;border:0.1vw solid;float:left;background-color:#ff0000"></div>
+    </div>
+    <div style = "width:8vw;height:8vw;float:left;margin:0.1vw">
+      <div id = "Q" style = "width:3.8vw;height:3.8vw;float:left;border:0.1vw solid;float:left;background-color:#0000ff"></div>
+      <div id = "R" style = "width:3.8vw;height:3.8vw;float:left;border:0.1vw solid;float:left;background-color:#0000ff"></div>
+      <div id = "T" style = "width:3.8vw;height:3.8vw;float:left;border:0.1vw solid;float:left;background-color:#0000ff"></div>
+      <div id = "S" style = "width:3.8vw;height:3.8vw;float:left;border:0.1vw solid;float:left;background-color:#0000ff"></div>
+    </div>
+    <div style = "width:8vw;height:8vw;float:left;float:left;margin:0.1vw"></div>
+    <div style = "width:8vw;height:8vw;float:left;margin:0.1vw">
+      <div id = "U" style = "width:3.8vw;height:3.8vw;float:left;border:0.1vw solid;float:left;background-color:#fcfc05"></div>
+      <div id = "V" style = "width:3.8vw;height:3.8vw;float:left;border:0.1vw solid;float:left;background-color:#fcfc05"></div>
+      <div id = "X" style = "width:3.8vw;height:3.8vw;float:left;border:0.1vw solid;float:left;background-color:#fcfc05"></div>
+      <div id = "W" style = "width:3.8vw;height:3.8vw;float:left;border:0.1vw solid;float:left;background-color:#fcfc05"></div>
+    </div>
+  </div>
+  <div style = "width:33.1vw;height:24.6vw;float:left;"></div>
+
+
+  <div style = "width:30%;float:left;height:150px"></div>
+  <div style = "width:40%;visibility:visible;float:left;height:150px">
+    <button class = "move" onclick = "right()"> R </button>
+    <button class = "move" onclick = "rightPrime()"> R' </button>
+    <button class = "move" onclick = "doubleRight()"> R2 </button>
+    <button class = "move" onclick = "up()"> U </button>
+    <button class = "move" onclick = "upPrime()"> U' </button>
+    <button class = "move" onclick = "doubleUp()"> U2 </button>
+    <button class = "move" onclick = "front()"> F </button>
+    <button class = "move" onclick = "frontPrime()"> F' </button>
+    <button class = "move" onclick = "doubleFront()"> F2 </button>
+    <button class = "move" onclick = "reset()"> Reset </button>
+  </div>
+  <div style = "width:30%;float:left;height:150px"></div>
+</body>
+
+</html>
