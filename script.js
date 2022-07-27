@@ -1,6 +1,29 @@
 //var cube = ['W', 'Y', 'G', 'O', 'G', 'W', 'Y', 'O', 'B', 'O', 'G', 'G', 'Y', 'B', 'B', 'W', 'R', 'O', 'B', 'R', 'R', 'R', 'W', 'Y'];
 //scramble: F R2 F R F2 U' F R U2
 
+document.addEventListener('keydown', function(e) {
+    switch (e.keyCode) {
+        case 73:
+        	right();
+        	break;
+        case 75:
+        	rightPrime();
+        	break;
+        case 72:
+        	front();
+        	break;
+        case 71:
+        	frontPrime();
+        	break;
+        case 74:
+        	up();
+        	break;
+        case 70:
+        	upPrime();
+        	break;
+    }
+});
+
 var cube = [0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5];
 const colours = ["#ffffff", "#fc8d05", "#00ff00", "#ff0000", "#0000ff", "#fcfc05"];
 
