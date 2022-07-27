@@ -22,36 +22,140 @@ function printCube(){
 
 
 function solveCube(){
+	let origCube = cube; //original cube
+
+
 	let map = new Map(); //maps permutation to the previous move
 	let queue = new Array(); //queue.shift() = poll, queue.push();
 
-
+	map.set(serialize(cube), " ");
 	queue.push([serialize(cube), " "]);
 
 	
-	while(queue.length != 0){
-		let curPerm = queue[0][0];
-		let prevMove = queue[0][1];
+	let frontOfQueue = 0;
 
-		queue.shift();
+	while(queue.length != 0){
+		playMode = false;
+
+		let curPerm = queue[frontOfQueue][0];
+		let prevMove = queue[frontOfQueue][1];
+
+		/* Debug Stuff
+		console.log(prevMove);
+		for(let i = 0; i < queue.length; i++){
+			console.log(queue[i][0] + " " + queue[i][1]);
+		}
+		console.log(" ");
+
+		console.log(map.size);
+		___________________ */
+
+
+		frontOfQueue++;
 
 		if(solved.has(curPerm)){
+			ans = "";
+
+			console.log("done");
+			
+			while(prevMove != " "){
+				ans = prevMove + " " + ans;
+				//console.log(prevMove);
+
+				cube = cubeToArray(curPerm);
+				doInverse(prevMove);
+				curPerm = serialize(cube);
+				prevMove = map.get(curPerm);
+			}
+			console.log(ans);
 			/* working on */
+			playMode = true;
+			cube = origCube;
+			break;
 		}
 
-		let permAsArray = cubeToArray(curPerm);
+		cube = cubeToArray(curPerm);
 
 
 		if(prevMove != "F" && prevMove != "F'" && prevMove != "F2"){
-			
+			front();
+			let doTurn = serialize(cube);
+
+			if(!map.has(doTurn)){
+				map.set(doTurn.slice(0, 24), "F");
+				queue.push([doTurn.slice(0, 24), "F"]);
+			}
+
+			doubleFront();
+			doTurn = serialize(cube);
+			if(!map.has(doTurn)){
+				map.set(doTurn.slice(0, 24), "F'");
+				queue.push([doTurn.slice(0, 24), "F'"]);
+			}
+
+
+			frontPrime();
+			doTurn = serialize(cube);
+			if(!map.has(doTurn)){
+				map.set(doTurn.slice(0, 24), "F2");
+				queue.push([doTurn.slice(0, 24), "F2"]);
+			}
+
+			doubleFront();
 		}
 
+		
 		if(prevMove != "U" && prevMove != "U'" && prevMove != "U2"){
+			up();
+			let doTurn = serialize(cube);
 
+			if(!map.has(doTurn)){
+				map.set(doTurn.slice(0, 24), "U");
+				queue.push([doTurn.slice(0, 24), "U"]);
+			}
+
+			doubleUp();
+			doTurn = serialize(cube);
+			if(!map.has(doTurn)){
+				map.set(doTurn.slice(0, 24), "U'");
+				queue.push([doTurn.slice(0, 24), "U'"]);
+			}
+
+
+			upPrime();
+			doTurn = serialize(cube);
+			if(!map.has(doTurn)){
+				map.set(doTurn.slice(0, 24), "U2");
+				queue.push([doTurn.slice(0, 24), "U2"]);
+			}
+			doubleUp();
 		}
-
+		
+		
 		if(prevMove != "R" && prevMove != "R'" && prevMove != "R2"){
-			
+			right();
+			let doTurn = serialize(cube);
+
+			if(!map.has(doTurn)){
+				map.set(doTurn.slice(0, 24), "R");
+				queue.push([doTurn.slice(0, 24), "R"]);
+			}
+
+			doubleRight();
+			doTurn = serialize(cube);
+			if(!map.has(doTurn)){
+				map.set(doTurn.slice(0, 24), "R'");
+				queue.push([doTurn.slice(0, 24), "R'"]);
+			}
+
+
+			rightPrime();
+			doTurn = serialize(cube);
+			if(!map.has(doTurn)){
+				map.set(doTurn.slice(0, 24), "R2");
+				queue.push([doTurn.slice(0, 24), "R2"]);
+			}
+			doubleRight();	
 		}
 	}
 
@@ -337,6 +441,28 @@ function doubleFront(){
 	cube[11] = temp;
 
 	if(playMode) printCube();
+}
+
+function doInverse(move){
+	if(move == "F"){
+		frontPrime();
+	}else if(move == "F'"){
+		front();
+	}else if(move == "F2"){
+		doubleFront();
+	}else if(move == "U"){
+		upPrime();
+	}else if(move == "U'"){
+		up();
+	}else if(move == "U2"){
+		doubleUp();
+	}else if(move == "R"){
+		rightPrime();
+	}else if(move == "R'"){
+		right();
+	}else{
+		doubleRight();
+	}
 }
 
 function reset(){
