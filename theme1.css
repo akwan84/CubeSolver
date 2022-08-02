@@ -4,3 +4,10 @@
 	margin:1%;
 	float: left;
 }
+
+.colorSelector{
+	width: 5vw;
+	height: 5vw;
+	margin: 1vw;	
+	float: left;
+}

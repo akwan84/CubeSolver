@@ -25,9 +25,11 @@ document.addEventListener('keydown', function(e) {
 });
 
 var cube = [0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5];
-const colours = ["#ffffff", "#fc8d05", "#00ff00", "#ff0000", "#0000ff", "#fcfc05"];
+const colours = ["white", "orange", "lime", "red", "blue", "yellow"];
 
 var playMode = true;
+
+var selectedColour = -1;
 
 const solved = new Set(["000011112222333344445555", "000022223333444411115555", "000033334444111122225555", "000044441111222233335555", 
 "111100004444555522223333", "111144445555222200003333", "111155552222000044443333", "111122220000444455553333",
@@ -181,55 +183,6 @@ function solveCube(){
 			doubleRight();	
 		}
 	}
-
-	/*
-	
-	queue.add([cube as string, ""])
-	while(queue is not empty){
-		curPerm = queue.peek()[0]
-		prevMove = queue.poll()[1]
-
-		if(curPerm is a solved state) {
-			//retracing the steps
-
-			ans = ""
-			while(prevMove != ""){
-				add prevMove to the front of ans
-				
-				curPerm = convert curPerm to an array, undo prevMove, convert it back to a string
-				prevMove = move mapped to curPerm
-			}
-
-			print ans and break the loop
-
-		}
-
-
-
-		permAsArray = curPerm as a character array
-
-		if(prevMove was not a front face move){
-			doTurn = apply F, F', and F2 to permAsArray, convert to string
-			
-			if(doTurn is not in map){
-				put the pair (doTurn, recent move) into the map
-				add this pair to the queue
-			}
-			undo the move on permAsArray and repeat with other front facing moves
-		}
-
-		if(prevMove was not a top face move){
-			same as front facing moves 	
-		}
-
-		if(prevMove was not a right face move){
-			same as front facing moves
-		}
-	}
-
-
-
-	*/
 }
 
 function serialize(curCube){
@@ -496,4 +449,15 @@ function reset(){
 		cube[i] = cur;
 	}
 	printCube();
+}
+
+function selectColour(colour){
+	selectedColour = colour;
+	console.log(colour);
+}
+
+function paint(id){
+	if(selectedColour != -1){
+		document.getElementById(id).style.backgrondColor = colours[selectedColour];
+	}
 }
