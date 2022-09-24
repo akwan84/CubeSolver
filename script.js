@@ -1,27 +1,6 @@
 //var cube = ['W', 'Y', 'G', 'O', 'G', 'W', 'Y', 'O', 'B', 'O', 'G', 'G', 'Y', 'B', 'B', 'W', 'R', 'O', 'B', 'R', 'R', 'R', 'W', 'Y'];
 //scramble: F R2 F R F2 U' F R U2
 
-document.addEventListener('keydown', function(e) {
-    switch (e.keyCode) {
-        case 37:
-        //left
-        	right();
-        	break;
-        case 38:
-        //up
-        	rightPrime();
-        	break;
-        case 39:
-        //right
-        	front();
-        	break;
-        case 40:
-        //down
-        	frontPrime();
-        	break;
-    }
-});
-
 var cube = [0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5];
 const colours = ["white", "orange", "lime", "red", "blue", "yellow"];
 
@@ -39,12 +18,7 @@ const solved = new Set(["000011112222333344445555", "000022223333444411115555", 
 
 
 document.addEventListener('DOMContentLoaded', function() {
-	let counter = 0;
-	let numPainted = 0;
-    for(let i = 65; i <= 88; i++){
-    	document.getElementById(String.fromCharCode(i)).style.backgroundColor = colours[counter];
-    	if(++numPainted % 4 == 0) counter++;
-    }
+	reset();
 }, false);
 
 function printCube(){
@@ -101,6 +75,7 @@ function solveCube(){
 				prevMove = map.get(curPerm);
 			}
 			console.log(ans);
+			document.getElementById("solution").innerHTML = ans;
 			/* working on */
 			playMode = true;
 			cube = origCube;
@@ -457,6 +432,14 @@ function reset(){
 		cube[i] = cur;
 	}
 	printCube();
+
+
+	let counter = 0;
+	let numPainted = 0;
+    for(let i = 65; i <= 88; i++){
+    	document.getElementById(String.fromCharCode(i)).style.backgroundColor = colours[counter];
+    	if(++numPainted % 4 == 0) counter++;
+    }
 }
 
 function selectColour(colour){
