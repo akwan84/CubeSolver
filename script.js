@@ -3,23 +3,21 @@
 
 document.addEventListener('keydown', function(e) {
     switch (e.keyCode) {
-        case 73:
+        case 37:
+        //left
         	right();
         	break;
-        case 75:
+        case 38:
+        //up
         	rightPrime();
         	break;
-        case 72:
+        case 39:
+        //right
         	front();
         	break;
-        case 71:
+        case 40:
+        //down
         	frontPrime();
-        	break;
-        case 74:
-        	up();
-        	break;
-        case 70:
-        	upPrime();
         	break;
     }
 });
@@ -38,6 +36,16 @@ const solved = new Set(["000011112222333344445555", "000022223333444411115555", 
 "444400003333555511112222", "444433335555111100002222", "444455551111000033332222", "444411110000333355552222",
 "555511114444333322220000", "555544443333222211110000", "555533332222111144440000", "555522221111444433330000"
 ]);
+
+
+document.addEventListener('DOMContentLoaded', function() {
+	let counter = 0;
+	let numPainted = 0;
+    for(let i = 65; i <= 88; i++){
+    	document.getElementById(String.fromCharCode(i)).style.backgroundColor = colours[counter];
+    	if(++numPainted % 4 == 0) counter++;
+    }
+}, false);
 
 function printCube(){
 	for(let i = 65; i <= 88; i++){
@@ -453,11 +461,14 @@ function reset(){
 
 function selectColour(colour){
 	selectedColour = colour;
+
 	console.log(colour);
 }
 
 function paint(id){
+	console.log(selectedColour);
 	if(selectedColour != -1){
-		document.getElementById(id).style.backgrondColor = colours[selectedColour];
+		document.getElementById(id).style.backgroundColor = colours[selectedColour];
+		cube[id.charCodeAt(0) - 65] = selectedColour;
 	}
 }
